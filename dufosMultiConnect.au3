@@ -27,6 +27,7 @@ Global $count = 0
 Global $nbrComptes = ""
 Global $optionsOpti = 0
 
+Global $pathClient = "C:\Users\User\AppData\Local\Ankama\zaap\dofus-1.29\Dofus.exe"
 Global $path86 = "C:\Program Files (x86)\Dofus\Dofus.exe"
 Global $path64 = "C:\Program Files (x64)\Dofus\Dofus.exe"
 Global $path32 = "C:\Program Files (x32)\Dofus\Dofus.exe"
@@ -535,19 +536,21 @@ Func button2() ;lancer le script
 	$nbrComptes = GUICtrlRead($choixNombreComptes)
 	$arrBoth[0] = $nbrComptes
 
-	If FileExists($path86) = 1 Then
-		$path = $path86
-	ElseIf FileExists($path64) = 1 Then
-		$path = $path64
-	ElseIf FileExists($path32) = 1 Then
-		$path = $path32
-	ElseIf FileExists($ProgFiles) = 1 Then
-		$path = $ProgFiles
-	ElseIf FileExists($pathProg) = 1 Then
-		$path = $pathProg
+	If FileExists($pathClient) = 1 Then
+		$path = $pathClient
+;	ElseIf FileExists($path86) = 1 Then
+;		$path = $path86
+;	ElseIf FileExists($path64) = 1 Then
+;		$path = $path64
+;	ElseIf FileExists($path32) = 1 Then
+;		$path = $path32
+;	ElseIf FileExists($ProgFiles) = 1 Then
+;		$path = $ProgFiles
+;	ElseIf FileExists($pathProg) = 1 Then
+;		$path = $pathProg
 	Else
 		MsgBox(0, "Erreur", "Il semble que Dofus.exe ne soit pas la ou nous le pensions. Veuillez trouver Dofus.exe et cliquer dessus!")
-		Local Const $sMessage = "Trouvez le chemin d'accès Dofus.exe (Exemple 'C:\Program Files (x86)\Dofus\Dofus.exe')"
+		Local Const $sMessage = "Trouvez le chemin d'accès Dofus.exe (Exemple 'C:\Users\User\AppData\Local\Ankama\zaap\dofus-1.29\Dofus.exe')"
 		$path = FileOpenDialog($sMessage, "Bureau", "Scripts (*.exe)")
 		FileChangeDir($cheminCourant)
 	EndIf
