@@ -1,3 +1,6 @@
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Run_Au3Stripper=y
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #include <Constants.au3>
 #include <File.au3>
 #include <Date.au3>
@@ -27,7 +30,7 @@ Global $count = 0
 Global $nbrComptes = ""
 Global $optionsOpti = 0
 
-Global $pathClient = "C:\Users\User\AppData\Local\Ankama\zaap\dofus-1.29\Dofus.exe"
+Global $pathClient = "C:\Users\User\AppData\Local\Ankama\zaap\retro\Dofus.exe"
 Global $path86 = "C:\Program Files (x86)\Dofus\Dofus.exe"
 Global $path64 = "C:\Program Files (x64)\Dofus\Dofus.exe"
 Global $path32 = "C:\Program Files (x32)\Dofus\Dofus.exe"
@@ -770,6 +773,12 @@ Func lanceDofusV2()
 		While WinActive($iPID[$count]) = 0
 			Sleep(50)
 		Wend
+
+		While pixelGetColor(550 * $desktopWidth, 392 * $desktopHeight) <> 0xFAF3EB
+			Sleep(20)
+		WEnd
+
+	MouseClick($MOUSE_CLICK_LEFT, 550 * $desktopWidth, 392 * $desktopHeight, 1, $mousespeed)
 		$count += 1
 		While pixelGetColor($pixelx, $pixely) <> $couleurDuWaitingScreen
 			Sleep(20)
@@ -790,6 +799,7 @@ Func lanceDofusV2()
 		While pixelGetColor($pixelServx, $pixelServy) = $couleurServer
 			Sleep(100)
 		WEnd
+		MouseClick($MOUSE_CLICK_LEFT, 554 * $desktopWidth, 63 * $desktopHeight, 1, $mousespeed)
 		choixServeur($arrServ[$i])
 
 	Next
@@ -802,6 +812,7 @@ Func lanceDofusV2()
 		 While pixelGetColor($pixelServx, $pixelServy) = $couleurServer
 			Sleep(100)
 		 WEnd
+		 MouseClick($MOUSE_CLICK_LEFT, 554 * $desktopWidth, 63 * $desktopHeight, 1, $mousespeed)
 		 choixPersonnage($arrChar[$i])
 
 	 Next
@@ -892,6 +903,15 @@ Func reglageOptionsGenerales()
 	WinSetState($iPID10, "", @SW_MAXIMIZE)
 	WinActivate($iPID10, "")
 
+	While WinActive($iPID10 = 0)
+		Sleep(50)
+	Wend
+
+	While pixelGetColor(550 * $desktopWidth, 392 * $desktopHeight) <> 0xFAF3EB
+		Sleep(20)
+	WEnd
+
+	MouseClick($MOUSE_CLICK_LEFT, 550 * $desktopWidth, 392 * $desktopHeight, 1, $mousespeed)
 	MouseClick($MOUSE_CLICK_LEFT, 1549 * $desktopWidth, 57 * $desktopHeight, 1, $mousespeed) ; Ouverture de la fenêtre des options
 	MouseClick($MOUSE_CLICK_LEFT, 998 * $desktopWidth, 873 * $desktopHeight, 1, $mousespeed) ; Remet les paramètres par défaut
 	MouseClick($MOUSE_CLICK_LEFT, 676 * $desktopWidth, 408 * $desktopHeight, 1, $mousespeed) ; Afficher la grille (activer)
